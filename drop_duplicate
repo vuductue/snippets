@@ -1,0 +1,18 @@
+## 1. Delete duplicate rows
+
+# Import the great and powerful pandas
+import pandas as pd
+
+# Create some example data
+df = pd.DataFrame({
+    'city': ['NYC', 'NYC', 'SYD', 'NYC', 'SEL', 'NYC', 'NYC']
+})
+
+# Get the count of each value
+value_counts = df['city'].value_counts()
+
+# Select the values where the count is less than 3 (or 5 if you like)
+to_remove = value_counts[value_counts <= 3].index
+
+# Keep rows where the city column is not in to_remove
+df = df[~df.city.isin(to_remove)]
